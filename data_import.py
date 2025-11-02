@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 from io import StringIO
 
+
 def load_onedrive_csv(share_url):
     """
     Wczytuje CSV z publicznego linku OneDrive bezpośrednio do DataFrame
@@ -12,7 +13,7 @@ def load_onedrive_csv(share_url):
     else:
         download_url = share_url + '?download=1'
 
-    print(f"Pobieranie danych z OneDrive...")
+    print("Pobieranie danych z OneDrive...")
     response = requests.get(download_url)
 
     if response.status_code == 200:
