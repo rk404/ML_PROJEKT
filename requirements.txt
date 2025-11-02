@@ -1,0 +1,4 @@
+﻿# biblioteki
+numpy
+pandas
+requests
