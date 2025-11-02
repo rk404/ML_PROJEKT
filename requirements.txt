@@ -1,4 +1,5 @@
-﻿# biblioteki
-numpy
-pandas
-requests
+﻿# Podstawowe biblioteki do Machine Learning
+numpy==2.3.4
+pandas==2.3.3
+requests==2.32.5
+
