@@ -1,13 +1,9 @@
 import tiktoken
-def load_tiktoken(model_name="o200K_base"):
-    '''
-    Ładuje tokenizer tiktoken dla podanego modelu
-    Domyślnie używa "o200K_base"
-    '''
-    try:
-        enc = tiktoken.get_encoding(model_name)
-        print(f'Załadowano tokenizer dla modelu: {model_name}')
-        return enc
-    except Exception as e:
-        print(f'Błąd ładowania tokenizera dla modelu {model_name}: {e}')
-        return None 
+tokenizer = tiktoken.get_encoding("o200k_base")
+text = "To jest test tokenizera o200k_base."
+tokens = tokenizer.encode(text)
+print("Tokeny:", tokens)
+
+# dtworzenie tekstu
+decoded = tokenizer.decode(tokens)
+print("Odtworzony tekst:", decoded)
