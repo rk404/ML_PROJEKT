@@ -7,3 +7,9 @@ print("Kombinacje DataFrame:")
 print(kombinacje_df.head())
 print("Indeksy DataFrame:")
 print(indeksy_df.head())
+
+#lista kolumn w ramce danych kombinacje_df
+print("Kolumny w kombinacje_df:")   
+print(kombinacje_df.columns.tolist())
+print("Kolumny w indeksy_df:")   
+print(indeksy_df.columns.tolist())
