@@ -1,6 +1,6 @@
 kombinacje_url = (
     "https://1drv.ms/x/c/8E1FC8AC1722703E/"
-    "EWTt4HgC3xNItsgAxOL2w3kBqsaS3duIJzIleeU279QTKA?e=573HeJ"
+    "EXKYlRXWpuhOlWcekoPAlq0BQqVKD1RTM58-c8kig_Z7EQ?e=YMOK28"
 )
 indeksy_url = (
     "https://1drv.ms/x/c/8E1FC8AC1722703E/"

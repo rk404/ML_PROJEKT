@@ -1,4 +1,4 @@
-﻿import requests
+import requests
 import pandas as pd
 from io import StringIO
 import urllib3
@@ -23,10 +23,24 @@ def load_onedrive_csv(share_url):
 
     if response.status_code == 200:
         # Dekoduj content i wczytaj do pandas
-        csv_content = response.content.decode('utf-8')
+        # Dekoduj content i wczytaj do pandas - próbuj różnych kodowań
+        encodings = ['utf-8', 'windows-1250', 'cp1252', 'iso-8859-2', 'latin2']
+        csv_content = None
+        for encoding in encodings:
+            try:
+                csv_content = response.content.decode(encoding)
+                print(f'Pomyślnie zdekodowano przy użyciu {encoding}')
+                break
+            except UnicodeDecodeError:
+                continue
+        
+        if csv_content is None:
+            print('Nie udało się zdekodować pliku przy użyciu standardowych kodowań')
+            return None
         df = pd.read_csv(StringIO(csv_content), sep=';')
         print(f'Wczytano {len(df)} wierszy i {len(df.columns)} kolumn')
         return df
     else:
         print(f'Błąd pobierania: {response.status_code}')
         return None
+
