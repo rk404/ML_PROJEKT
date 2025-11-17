@@ -1,5 +1,6 @@
 import static_ev as ev
 from data_import import load_onedrive_csv
+from tokenizer import load_tiktoken
 
 kombinacje_df = load_onedrive_csv(ev.kombinacje_url)
 indeksy_df = load_onedrive_csv(ev.indeksy_url)
