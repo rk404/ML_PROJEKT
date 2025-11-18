@@ -1,12 +1,12 @@
 ﻿import sys
 import io
-from tokenizacja import tokenize_column
+from Funkcje.tokenizacja import tokenize_column
 
 # Ustaw kodowanie UTF-8 dla konsoli
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 import static_ev as ev
-from data_import import load_onedrive_csv
+from Funkcje.data_import import load_onedrive_csv
 #from tokenizer import load_tiktoken
 
 # ramka z baza indeksow materialowych
