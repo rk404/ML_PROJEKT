@@ -43,7 +43,7 @@ def train_xgb_model(indeksy_model, n_estimators, n_learning_rate, n_max_depth, n
     #metryki accuracy_score, classification_report, confusion_matrix
 
     accuracy = accuracy_score(y_test, y_pred)
-    report = classification_report(y_test, y_pred)
+    report = classification_report(y_test, y_pred,zero_division=0)
     matrix = confusion_matrix(y_test, y_pred)
     
     return model, y_test, y_pred, accuracy, report, matrix
