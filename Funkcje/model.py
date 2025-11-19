@@ -11,7 +11,7 @@ def train_xgb_model(indeksy_model, n_estimators, n_learning_rate, n_max_depth, n
     Parametry:
     -----------
     indeksy_model_1 : DataFrame
-        DataFrame zawierający kolumny 'NAZWA_tokens' i 'Indeks_2_bloki'
+        DataFrame zawierający kolumny 'NAZWA_TOKENS_PADDED' i 'Indeks_2_bloki'
     n_estimators : int, default=100
         Liczba drzew w modelu
     learning_rate : float, default=0.1
@@ -26,7 +26,7 @@ def train_xgb_model(indeksy_model, n_estimators, n_learning_rate, n_max_depth, n
     Zwraca:
     (model, y_test, y_pred, accuracy_score, classification_report, confusion_matrix) - wytrenowany model i metryki
     """
-    max_tokens = indeksy_model['NAZWA_TOKENS'].apply(len).max()
+    max_tokens = indeksy_model['NAZWA_TOKENS_PADDED'].apply(len).max()
     X = np.array([
         np.pad(tokens, (0, max_tokens - len(tokens)), constant_values=0)[:max_tokens]
         for tokens in indeksy_model['NAZWA_TOKENS']
