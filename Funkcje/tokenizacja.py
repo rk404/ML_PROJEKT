@@ -59,8 +59,6 @@ def tokenize_column(df, column_name='NAZWA', model='gpt-3.5-turbo'):
     
     # Dodaj kolumnę z liczbą tokenów
     df_copy[f'{column_name}_TOKEN_COUNT'] = df_copy[f'{column_name}_TOKENS'].apply(len)
-
-    df_copy[f'{column_name}_TOKENS_PADDED'] = pad_tokens(df_copy[f'{column_name}_TOKENS'].tolist())
     
     print(f'Tokenizacja zakończona. Średnia liczba tokenów: {df_copy[f"{column_name}_TOKEN_COUNT"].mean():.2f}')
     print(f'Maksymalna liczba tokenów: {df_copy[f"{column_name}_TOKEN_COUNT"].max()}')
@@ -112,21 +110,13 @@ def get_token_statistics(df, column_name='NAZWA'):
     
     return stats
 
-# padding tokenów do max długości w batchu
-def pad_tokens(token_lists, pad_token_id=0):
-    """
-    Wyrównuje listy tokenów do maksymalnej długości w batchu
-    
-    Args:
-        token_lists: lista list tokenów
-        pad_token_id: ID tokena do paddingu (domyślnie 0)
-    
-    Returns:
-        lista wyrównanych list tokenów
-    """
-    max_length = max(len(tokens) for tokens in token_lists)
+# padding tokenów do max_tokens podanych w parametrze
+
+def pad_tokens(token_lists, pad_token_id=0, max_tokens=None):
+    if max_tokens is None:
+        max_tokens = max(len(tokens) for tokens in token_lists)
     padded_tokens = [
-        tokens + [pad_token_id] * (max_length - len(tokens))
+        tokens + [pad_token_id] * (max_tokens - len(tokens))
         for tokens in token_lists
     ]
     return padded_tokens
