@@ -121,4 +121,5 @@ def pad_tokens(token_lists, pad_token_id=0, max_tokens=None):
         for tokens in token_lists
     ]
     # zwróć jako numpy array, aby obiekty miały atrybut .shape i były kompatybilne z bibliotekami ML
-    return np.array(padded_tokens)
+    #return np.array(padded_tokens)
+    return padded_tokens

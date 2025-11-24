@@ -11,7 +11,7 @@ def predict_top_classes(model, test_text, indeksy_df_token, indeksy_model_1,
         model: wytrenowany model XGBoost
         test_text: tekst do klasyfikacji
         indeksy_df_token: DataFrame z tokenizowanymi danymi treningowymi
-        indeksy_model_1: DataFrame z danymi treningowymi (zawiera kolumnę INDEKS_SEG_2)
+        indeksy_model_1: DataFrame z danymi treningowymi (zawiera kolumnę Y)
         column_name: nazwa kolumny z tekstem (domyślnie 'NAZWA')
         top_n: liczba najlepszych przewidywań do zwrócenia (domyślnie 5)
         model_type: typ modelu tokenizacji (domyślnie 'gpt-3.5-turbo') 
@@ -40,7 +40,7 @@ def predict_top_classes(model, test_text, indeksy_df_token, indeksy_model_1,
     top_probs = pred_proba[0][top_indices]
     
     # Pobierz unikalne kategorie z danych treningowych
-    unique_categories = sorted(indeksy_model_1['INDEKS_SEG_2'].unique())
+    unique_categories = sorted(indeksy_model_1['Y'].unique())
     
     # Mapowanie: model.classes_ zawiera liczby, mapujemy je na oryginalne nazwy
     top_classes = [
