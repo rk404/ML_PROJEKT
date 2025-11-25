@@ -26,11 +26,9 @@ def train_xgb_model(indeksy_model, n_estimators, n_learning_rate, n_max_depth, n
     Zwraca:
     (model, y_test, y_pred, accuracy_score, classification_report, confusion_matrix) - wytrenowany model i metryki
     """
-    max_tokens = indeksy_model['NAZWA_TOKENS_PADDED'].apply(len).max()
-    X = np.array([
-        np.pad(tokens, (0, max_tokens - len(tokens)), constant_values=0)[:max_tokens]
-        for tokens in indeksy_model['NAZWA_TOKENS']
-    ])
+    #max_tokens = indeksy_model['NAZWA_TOKENS_PADDED'].apply(len).max()
+    # x na podstawie kolumny 'NAZWA_TOKENS_PADDED'
+    X = np.array(indeksy_model['NAZWA_TOKENS_PADDED'].tolist())
     y = indeksy_model['Y'].astype('category').cat.codes  
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=n_test_size, random_state=n_random_state)
