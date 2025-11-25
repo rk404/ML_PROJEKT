@@ -1,6 +1,7 @@
 from xgboost import XGBClassifier
 from sklearn.model_selection import train_test_split    
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.preprocessing import LabelEncoder
 import numpy as np
 
 
@@ -29,7 +30,9 @@ def train_xgb_model(indeksy_model, n_estimators, n_learning_rate, n_max_depth, n
     #max_tokens = indeksy_model['NAZWA_TOKENS_PADDED'].apply(len).max()
     # x na podstawie kolumny 'NAZWA_TOKENS_PADDED'
     X = np.array(indeksy_model['NAZWA_TOKENS_PADDED'].tolist())
-    y = indeksy_model['Y'].astype('category').cat.codes  
+    le = LabelEncoder()
+    y = le.fit_transform(indeksy_model['Y'])
+   # y = indeksy_model['Y'].astype('category').cat.codes  
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=n_test_size, random_state=n_random_state)
     
