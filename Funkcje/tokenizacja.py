@@ -3,6 +3,7 @@ import pandas as pd
 import os
 import ssl
 import certifi
+import numpy as np
 
 # Wyłącz weryfikację SSL dla tiktoken
 os.environ['TIKTOKEN_CACHE_DIR'] = os.path.join(os.path.expanduser('~'), '.tiktoken_cache')
@@ -119,4 +120,6 @@ def pad_tokens(token_lists, pad_token_id=0, max_tokens=None):
         tokens + [pad_token_id] * (max_tokens - len(tokens))
         for tokens in token_lists
     ]
+    # zwróć jako numpy array, aby obiekty miały atrybut .shape i były kompatybilne z bibliotekami ML
+    #return np.array(padded_tokens)
     return padded_tokens

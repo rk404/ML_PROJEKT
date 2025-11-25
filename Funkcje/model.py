@@ -31,7 +31,7 @@ def train_xgb_model(indeksy_model, n_estimators, n_learning_rate, n_max_depth, n
         np.pad(tokens, (0, max_tokens - len(tokens)), constant_values=0)[:max_tokens]
         for tokens in indeksy_model['NAZWA_TOKENS']
     ])
-    y = indeksy_model['INDEKS_SEG_2'].astype('category').cat.codes  
+    y = indeksy_model['Y'].astype('category').cat.codes  
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=n_test_size, random_state=n_random_state)
     
